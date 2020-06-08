@@ -16,7 +16,7 @@ public class TuDienAction {
 	public static ArrayList<TuDien> inputData(int n) {
 		ArrayList<TuDien> listWord = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
-			System.out.println("Nhap tu so "+(i+1)+":");
+			System.out.println("Nhap tu so " + (i + 1) + ":");
 			try {
 				System.out.print("Nhap tu tieng Anh: ");
 				String tu = sc.nextLine();

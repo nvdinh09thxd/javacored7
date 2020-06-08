@@ -22,7 +22,7 @@ public class ThiSinhAction {
 			do {
 				try {
 					System.out.print("Nhap diem Toan: ");
-					toan = Float.valueOf(sc.nextLine());
+					toan = Float.parseFloat(sc.nextLine());
 					if (toan < 0 || toan > 10)
 						throw new NumberException("Vui long nhap diem Toan tu 0 den 10!");
 					check = false;
@@ -35,7 +35,7 @@ public class ThiSinhAction {
 			do {
 				try {
 					System.out.print("Nhap diem Ly: ");
-					ly = Float.valueOf(sc.nextLine());
+					ly = Float.parseFloat(sc.nextLine());
 					if (ly < 0 || ly > 10)
 						throw new NumberException("Vui long nhap diem Ly tu 0 den 10!");
 					check = true;
@@ -48,7 +48,7 @@ public class ThiSinhAction {
 			do {
 				try {
 					System.out.print("Nhap diem Hoa: ");
-					hoa = Float.valueOf(sc.nextLine());
+					hoa = Float.parseFloat(sc.nextLine());
 					if (hoa < 0 || hoa > 10)
 						throw new NumberException("Vui long nhap diem Hoa tu 0 den 10!");
 					check = false;
@@ -89,13 +89,12 @@ public class ThiSinhAction {
 			public int compare(ThiSinh ts1, ThiSinh ts2) {
 				if (ts1.tongDiem() < ts2.tongDiem()) {
 					return 1;
-				} else// {
+				} else
 				if (ts1.tongDiem() == ts2.tongDiem()) {
 					return 0;
 				} else {
 					return -1;
 				}
-				// }
 			}
 		});
 	}
