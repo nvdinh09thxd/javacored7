@@ -42,6 +42,10 @@ public class TuDien {
 
 	@Override
 	public String toString() {
-		return this.tu + "\t\t" + this.nghiaTV + "\t\t" + this.phienAm;
+		if (this.nghiaTV.length() > 5) {
+			return this.tu + "\t\t\t" + this.nghiaTV + "\t\t\t" + this.phienAm;
+		} else {
+			return this.tu + "\t\t\t" + this.nghiaTV + "\t\t\t\t" + this.phienAm;
+		}
 	}
 }

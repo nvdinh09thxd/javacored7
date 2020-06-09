@@ -24,9 +24,9 @@ public class TuDienMain {
 					try {
 						System.out.print("Nhap so tu cua tu dien: ");
 						n = Integer.valueOf(sc.nextLine());
-						if (n < 1)
-							throw new NumberException("So tu phai lon hon 0!");
-						listTuDien = TuDienAction.inputData(n);
+						if (n < 0)
+							throw new NumberException("So tu phai lon hon hoặc bằng 0!");
+						TuDienAction.inputData(listTuDien, n);
 						check1 = false;
 					} catch (NumberFormatException e) {
 						System.out.println("Nhap sai dinh dang so!");
@@ -51,7 +51,7 @@ public class TuDienMain {
 					System.out.println("Khong tim thay!");
 				} else {
 					System.out.println("Ket qua tim kiem");
-					System.out.println("Tu tieng Anh\tNghia tieng Viet\tPhien am");
+					System.out.println("Tu tieng Anh\t\tNghia tieng Viet\t\tPhien am");
 					System.out.println(TuDienAction.searchWord(tu, listTuDien));
 				}
 				break;
@@ -59,8 +59,6 @@ public class TuDienMain {
 				System.out.println("Cam on da su dung tu dien!");
 				check = false;
 				break;
-			default:
-				System.out.println("Nhap sai lua chon, xin moi nhap lai!");
 			}
 		} while (check);
 	}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import beans.TuDien;
+import exception.NumberException;
 import exception.WordException;
 
 public class TuDienAction {
@@ -13,8 +14,8 @@ public class TuDienAction {
 		System.out.println("----------------------------------------");
 	}
 
-	public static ArrayList<TuDien> inputData(int n) {
-		ArrayList<TuDien> listWord = new ArrayList<>();
+	// Nhập mảng từ điển
+	public static void inputData(ArrayList<TuDien> listWord, int n) {
 		for (int i = 0; i < n; i++) {
 			System.out.println("Nhap tu so " + (i + 1) + ":");
 			try {
@@ -34,9 +35,9 @@ public class TuDienAction {
 				i--;
 			}
 		}
-		return listWord;
 	}
 
+	// Kiểm tra từ có tồn tại trong mảng từ điển chưa?
 	public static boolean isExist(String word, ArrayList<TuDien> listWord) {
 		for (TuDien w : listWord) {
 			if (w.getTu().equals(word))
@@ -45,6 +46,7 @@ public class TuDienAction {
 		return false;
 	}
 
+	// Tìm kiếm từ trong từ điển
 	public static TuDien searchWord(String word, ArrayList<TuDien> listWord) {
 		for (TuDien w : listWord) {
 			if (w.getTu().equals(word))
@@ -53,13 +55,15 @@ public class TuDienAction {
 		return null;
 	}
 
+	// Hiển thị danh sách từ điển
 	public static void displayData(ArrayList<TuDien> listWord) {
-		System.out.println("Tu tieng Anh\tNghia tieng Viet\tPhien am");
+		System.out.println("Tu tieng Anh\t\tNghia tieng Viet\t\tPhien am");
 		for (TuDien objWord : listWord) {
 			System.out.println(objWord);
 		}
 	}
 
+	// menu
 	public static int menu() {
 		line();
 		System.out.println("== TU DIEN ANH VIET - BAI TAP VINAENTER EDU ==");
@@ -73,10 +77,14 @@ public class TuDienAction {
 		do {
 			try {
 				System.out.print("Nhap thao tac lua chon: ");
-				chon = Integer.valueOf(sc.nextLine());
+				chon = Integer.parseInt(sc.nextLine());
+				if (chon > 4 || chon < 1)
+					throw new NumberException("Nhập số từ 1 - 4");
 				check = false;
 			} catch (NumberFormatException e) {
 				System.out.println("Nhap sai dinh dang so!");
+			} catch (NumberException e) {
+				System.out.println(e.getMessage());
 			}
 		} while (check);
 		return chon;

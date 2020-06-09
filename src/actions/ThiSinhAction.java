@@ -11,6 +11,7 @@ import exception.NumberException;
 public class ThiSinhAction {
 	static Scanner sc = new Scanner(System.in);
 
+	// Nhập mảng thí sinh
 	public static ArrayList<ThiSinh> inputData(int n) {
 		ArrayList<ThiSinh> listTS = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
@@ -65,6 +66,7 @@ public class ThiSinhAction {
 
 	}
 
+	// Xuất mảng thí sinh trúng tuyển
 	public static void display(ArrayList<ThiSinh> listTS) {
 		int dem = 0;
 		for (ThiSinh objTS : listTS) {
@@ -84,13 +86,13 @@ public class ThiSinhAction {
 		}
 	}
 
+	//Sắp xếp danh sách thí sinh theo tổng điểm giảm dần
 	public static void sapXep(ArrayList<ThiSinh> listTS) {
 		Collections.sort(listTS, new Comparator<ThiSinh>() {
 			public int compare(ThiSinh ts1, ThiSinh ts2) {
 				if (ts1.tongDiem() < ts2.tongDiem()) {
 					return 1;
-				} else
-				if (ts1.tongDiem() == ts2.tongDiem()) {
+				} else if (ts1.tongDiem() == ts2.tongDiem()) {
 					return 0;
 				} else {
 					return -1;

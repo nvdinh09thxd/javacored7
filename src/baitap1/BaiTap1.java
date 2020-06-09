@@ -8,6 +8,7 @@ import exception.NumberException;
 public class BaiTap1 {
 	static Scanner sc = new Scanner(System.in);
 
+	//Nhập mảng số nguyên
 	public static ArrayList<Integer> inputData(int n) throws NumberException {
 		if (n < 0)
 			throw new NumberException("Số phần tử của mảng không được nhỏ hơn 0!");
@@ -20,6 +21,7 @@ public class BaiTap1 {
 		return listInt;
 	}
 
+	//Xuất mảng số nguyên
 	public static void displayData(ArrayList<Integer> listInt) {
 		if (listInt.size() > 0) {
 			System.out.print("Danh sach mang: ");
@@ -31,6 +33,7 @@ public class BaiTap1 {
 			System.out.println("Mảng rỗng!");
 	}
 
+	//Tính tổng mảng
 	public static int tinhTongMang(ArrayList<Integer> listInt) {
 		int tong = 0;
 		for (int i : listInt) {
@@ -39,6 +42,7 @@ public class BaiTap1 {
 		return tong;
 	}
 
+	//Tính tổng phần tử đầu + cuối
 	public static int tinhTongDauCuoi(ArrayList<Integer> listInt) {
 		if (listInt.size() == 1)
 			return listInt.get(0);
