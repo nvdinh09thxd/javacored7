@@ -56,6 +56,6 @@ public class ThiSinh {
 
 	@Override
 	public String toString() {
-		return this.ten + "\t" + this.diemToan + "\t\t" + this.diemLy + "\t\t" + diemHoa + "\t\t" + this.tongDiem();
+		return this.ten + "\t" + this.diemToan + "\t\t" + this.diemLy + "\t\t" + diemHoa + "\t\t" + tongDiem();
 	}
 }
