@@ -30,17 +30,14 @@ public class BaiTap1 {
 		ArrayList<Integer> listInt = new ArrayList<>();
 		// Nhập từng phần tử cho mảng
 		for (int i = 0; i < n; i++) {
-			check = true;
-			do {
-				try {
-					System.out.print("Nhap so thu " + (i + 1) + ": ");
-					int number = Integer.parseInt(sc.nextLine());
-					check = false;
-					listInt.add(number);
-				} catch (NumberFormatException e) {
-					System.out.println("Nhap sai dinh dang so!");
-				}
-			} while (check);
+			try {
+				System.out.print("Nhap so thu " + (i + 1) + ": ");
+				int number = Integer.parseInt(sc.nextLine());
+				listInt.add(number);
+			} catch (NumberFormatException e) {
+				System.out.println("Nhap sai dinh dang so!");
+				i--;
+			}
 		}
 		return listInt;
 	}
