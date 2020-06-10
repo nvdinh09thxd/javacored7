@@ -43,12 +43,20 @@ public class USBAction {
 	}
 
 	public static void displayStatus1(ArrayList<USB> al) {
-		System.out.println("Thong tin USB co trang thai la 1:");
+		int dem = 0;
 		for (USB obj : al) {
 			if (obj.isTrangthai()) {
-				System.out.println(obj);
-				System.out.println("=====================");
+				dem++;
 			}
 		}
+		if (dem > 0) {
+			for (USB obj : al) {
+				if (obj.isTrangthai()) {
+					System.out.println(obj);
+					System.out.println("=====================");
+				}
+			}
+		} else
+			System.out.println("Không có thông tin");
 	}
 }

@@ -1,8 +1,5 @@
 package beans;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class HoaHau {
 	private int id;
 	private String name;
