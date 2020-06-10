@@ -9,11 +9,12 @@ public class ThiSinhMain {
 
 	public static void main(String[] args) {
 
+		ArrayList<ThiSinh> listThiSinh = new ArrayList<>();
 		System.out.println("NHAP DANH SACH THI SINH");
-		ArrayList<ThiSinh> listThiSinh;
 		listThiSinh = ThiSinhAction.inputData();
 		System.out.println("XUAT DANH SACH THI SINH TRUNG TUYEN");
 		ThiSinhAction.display(listThiSinh);
+		//Sắp xếp danh sách thí sinh
 		ThiSinhAction.sapXep(listThiSinh);
 		System.out.println("XUAT DANH SACH THI SINH TRUNG TUYEN DA DUOC SAP XEP");
 		ThiSinhAction.display(listThiSinh);

@@ -14,68 +14,79 @@ public class ThiSinhAction {
 	// Nhập mảng thí sinh
 	public static ArrayList<ThiSinh> inputData() {
 		ArrayList<ThiSinh> listTS = new ArrayList<>();
-		boolean cont = true;
+		boolean check = true;
+		int n = 0;
+		// Nhập số lượng thí sinh
 		do {
 			try {
 				System.out.print("Nhap so luong thi sinh: ");
-				int n = Integer.parseInt(sc.nextLine());
+				n = Integer.parseInt(sc.nextLine());
 				if (n < 0)
 					throw new NumberException("Vui long nhap so luong thi sinh lon hon hoac bang 0!");
-				cont = false;
-				for (int i = 0; i < n; i++) {
-					System.out.println("Nhap thong tin thi sinh thu " + (i + 1) + ": ");
-					System.out.print("Nhap ten thi sinh: ");
-					String ten = sc.nextLine();
-					float toan = 0, ly = 0, hoa = 0;
-					boolean check = true;
-					do {
-						try {
-							System.out.print("Nhap diem Toan: ");
-							toan = Float.parseFloat(sc.nextLine());
-							if (toan < 0 || toan > 10)
-								throw new NumberException("Vui long nhap diem Toan tu 0 den 10!");
-							check = false;
-						} catch (NumberException e) {
-							System.out.println(e.getMessage());
-						} catch (NumberFormatException e) {
-							System.out.println("Nhap sai dinh dang so!");
-						}
-					} while (check);
-					do {
-						try {
-							System.out.print("Nhap diem Ly: ");
-							ly = Float.parseFloat(sc.nextLine());
-							if (ly < 0 || ly > 10)
-								throw new NumberException("Vui long nhap diem Ly tu 0 den 10!");
-							check = true;
-						} catch (NumberException e) {
-							System.out.println(e.getMessage());
-						} catch (NumberFormatException e) {
-							System.out.println("Nhap sai dinh dang so!");
-						}
-					} while (!check);
-					do {
-						try {
-							System.out.print("Nhap diem Hoa: ");
-							hoa = Float.parseFloat(sc.nextLine());
-							if (hoa < 0 || hoa > 10)
-								throw new NumberException("Vui long nhap diem Hoa tu 0 den 10!");
-							check = false;
-						} catch (NumberException e) {
-							System.out.println(e.getMessage());
-						} catch (NumberFormatException e) {
-							System.out.println("Nhap sai dinh dang so!");
-						}
-					} while (check);
-					ThiSinh ts = new ThiSinh(ten, toan, ly, hoa);
-					listTS.add(ts);
-				}
+				check = false;
 			} catch (NumberException e) {
 				System.out.println(e.getMessage());
 			} catch (NumberFormatException e) {
 				System.out.println("Nhap sai dinh dang so!");
 			}
-		} while (cont);
+		} while (check);
+
+		// Nhập thông tin cho mỗi thí sinh
+		for (int i = 0; i < n; i++) {
+			System.out.println("Nhap thong tin thi sinh thu " + (i + 1) + ": ");
+			System.out.print("Nhap ten thi sinh: ");
+			String ten = sc.nextLine();
+			float toan = 0, ly = 0, hoa = 0;
+			check = true;
+
+			// Nhập điểm Toán
+			do {
+				try {
+					System.out.print("Nhap diem Toan: ");
+					toan = Float.parseFloat(sc.nextLine());
+					if (toan < 0 || toan > 10)
+						throw new NumberException("Vui long nhap diem Toan tu 0 den 10!");
+					check = false;
+				} catch (NumberException e) {
+					System.out.println(e.getMessage());
+				} catch (NumberFormatException e) {
+					System.out.println("Nhap sai dinh dang so!");
+				}
+			} while (check);
+
+			// Nhập điểm Lý
+			do {
+				try {
+					System.out.print("Nhap diem Ly: ");
+					ly = Float.parseFloat(sc.nextLine());
+					if (ly < 0 || ly > 10)
+						throw new NumberException("Vui long nhap diem Ly tu 0 den 10!");
+					check = true;
+				} catch (NumberException e) {
+					System.out.println(e.getMessage());
+				} catch (NumberFormatException e) {
+					System.out.println("Nhap sai dinh dang so!");
+				}
+			} while (!check);
+
+			// Nhập điểm Hóa
+			do {
+				try {
+					System.out.print("Nhap diem Hoa: ");
+					hoa = Float.parseFloat(sc.nextLine());
+					if (hoa < 0 || hoa > 10)
+						throw new NumberException("Vui long nhap diem Hoa tu 0 den 10!");
+					check = false;
+				} catch (NumberException e) {
+					System.out.println(e.getMessage());
+				} catch (NumberFormatException e) {
+					System.out.println("Nhap sai dinh dang so!");
+				}
+			} while (check);
+
+			ThiSinh ts = new ThiSinh(ten, toan, ly, hoa);
+			listTS.add(ts);
+		}
 
 		return listTS;
 

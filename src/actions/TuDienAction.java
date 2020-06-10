@@ -15,7 +15,23 @@ public class TuDienAction {
 	}
 
 	// Nhập mảng từ điển
-	public static void inputData(ArrayList<TuDien> listWord, int n) {
+	public static void inputData(ArrayList<TuDien> listWord) {
+		int n = 0;
+		boolean check = true;
+		do {
+			try {
+				System.out.print("Nhap so tu cua tu dien: ");
+				n = Integer.parseInt(sc.nextLine());
+				if (n < 0)
+					throw new NumberException("So tu phai lon hon hoặc bằng 0!");
+				check = false;
+			} catch (NumberFormatException e) {
+				System.out.println("Nhap sai dinh dang so!");
+			} catch (NumberException e) {
+				System.out.println(e.getMessage());
+			}
+		} while (check);
+
 		for (int i = 0; i < n; i++) {
 			System.out.println("Nhap tu so " + (i + 1) + ":");
 			try {
@@ -57,9 +73,26 @@ public class TuDienAction {
 
 	// Hiển thị danh sách từ điển
 	public static void displayData(ArrayList<TuDien> listWord) {
-		System.out.println("Tu tieng Anh\t\tNghia tieng Viet\t\tPhien am");
-		for (TuDien objWord : listWord) {
-			System.out.println(objWord);
+		if (listWord.size() == 0) {
+			System.out.println("Danh sach tu dien trong!");
+		} else {
+			System.out.println("Tu tieng Anh\t\tNghia tieng Viet\t\tPhien am");
+			for (TuDien objWord : listWord) {
+				System.out.println(objWord);
+			}
+		}
+	}
+
+	// Tra từ
+	public static void search(ArrayList<TuDien> listWord) {
+		System.out.print("Nhap tu can tra: ");
+		String tu = sc.nextLine();
+		if (searchWord(tu, listWord) == null) {
+			System.out.println("Khong tim thay!");
+		} else {
+			System.out.println("Ket qua tim kiem");
+			System.out.println("Tu tieng Anh\t\tNghia tieng Viet\t\tPhien am");
+			System.out.println(searchWord(tu, listWord));
 		}
 	}
 

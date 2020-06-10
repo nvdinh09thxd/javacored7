@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import actions.TuDienAction;
 import beans.TuDien;
-import exception.NumberException;
 
 public class TuDienMain {
 	static Scanner sc = new Scanner(System.in);
@@ -17,43 +16,19 @@ public class TuDienMain {
 			int chon = TuDienAction.menu();
 			switch (chon) {
 			case 1:
-				System.out.println("NHAP DANH SACH TU DIEN");
-				int n = 0;
-				boolean check1 = true;
-				do {
-					try {
-						System.out.print("Nhap so tu cua tu dien: ");
-						n = Integer.valueOf(sc.nextLine());
-						if (n < 0)
-							throw new NumberException("So tu phai lon hon hoặc bằng 0!");
-						TuDienAction.inputData(listTuDien, n);
-						check1 = false;
-					} catch (NumberFormatException e) {
-						System.out.println("Nhap sai dinh dang so!");
-					} catch (NumberException e) {
-						System.out.println(e.getMessage());
-					}
-				} while (check1);
+				System.out.println("============== NHAP DANH SACH TU DIEN ==============");
+				TuDienAction.inputData(listTuDien);
+
 				break;
 			case 2:
-				System.out.println("XUAT DANH SACH TU DIEN");
-				if (listTuDien.size() == 0) {
-					System.out.println("Danh sach tu dien trong!");
-				} else {
-					TuDienAction.displayData(listTuDien);
-				}
+				System.out.println("============== XUAT DANH SACH TU DIEN ==============");
+				TuDienAction.displayData(listTuDien);
+
 				break;
 			case 3:
-				System.out.println("TRA TU");
-				System.out.print("Nhap tu can tra: ");
-				String tu = sc.nextLine();
-				if (TuDienAction.searchWord(tu, listTuDien) == null) {
-					System.out.println("Khong tim thay!");
-				} else {
-					System.out.println("Ket qua tim kiem");
-					System.out.println("Tu tieng Anh\t\tNghia tieng Viet\t\tPhien am");
-					System.out.println(TuDienAction.searchWord(tu, listTuDien));
-				}
+				System.out.println("============== TRA TU ==============");
+				TuDienAction.search(listTuDien);
+				
 				break;
 			case 4:
 				System.out.println("Cam on da su dung tu dien!");

@@ -8,20 +8,44 @@ import exception.NumberException;
 public class BaiTap1 {
 	static Scanner sc = new Scanner(System.in);
 
-	//Nhập mảng số nguyên
-	public static ArrayList<Integer> inputData(int n) throws NumberException {
-		if (n < 0)
-			throw new NumberException("Số phần tử của mảng không được nhỏ hơn 0!");
+	// Nhập mảng số nguyên
+	public static ArrayList<Integer> inputData() {
+		boolean check = true;
+		int n = 0;
+		// Nhập số phần tử
+		do {
+			try {
+				System.out.print("Nhap so phan tu cua mang: ");
+				n = Integer.parseInt(sc.nextLine());
+				if (n < 0)
+					throw new NumberException("Số phần tử của mảng không được nhỏ hơn 0!");
+				check = false;
+			} catch (NumberFormatException e) {
+				System.out.println("Nhap sai dinh dang so!");
+			} catch (NumberException e) {
+				System.out.println(e.getMessage());
+			}
+		} while (check);
+
 		ArrayList<Integer> listInt = new ArrayList<>();
+		// Nhập từng phần tử cho mảng
 		for (int i = 0; i < n; i++) {
-			System.out.print("Nhap so thu " + (i + 1) + ": ");
-			int number = Integer.parseInt(sc.nextLine());
-			listInt.add(number);
+			check = true;
+			do {
+				try {
+					System.out.print("Nhap so thu " + (i + 1) + ": ");
+					int number = Integer.parseInt(sc.nextLine());
+					check = false;
+					listInt.add(number);
+				} catch (NumberFormatException e) {
+					System.out.println("Nhap sai dinh dang so!");
+				}
+			} while (check);
 		}
 		return listInt;
 	}
 
-	//Xuất mảng số nguyên
+	// Xuất mảng số nguyên
 	public static void displayData(ArrayList<Integer> listInt) {
 		if (listInt.size() > 0) {
 			System.out.print("Danh sach mang: ");
@@ -33,7 +57,7 @@ public class BaiTap1 {
 			System.out.println("Mảng rỗng!");
 	}
 
-	//Tính tổng mảng
+	// Tính tổng mảng
 	public static int tinhTongMang(ArrayList<Integer> listInt) {
 		int tong = 0;
 		for (int i : listInt) {
@@ -42,7 +66,7 @@ public class BaiTap1 {
 		return tong;
 	}
 
-	//Tính tổng phần tử đầu + cuối
+	// Tính tổng phần tử đầu + cuối
 	public static int tinhTongDauCuoi(ArrayList<Integer> listInt) {
 		if (listInt.size() == 1)
 			return listInt.get(0);
@@ -51,19 +75,7 @@ public class BaiTap1 {
 
 	public static void main(String[] args) {
 		ArrayList<Integer> listNumber = new ArrayList<>();
-		boolean check = true;
-		do {
-			try {
-				System.out.print("Nhap so phan tu cua mang: ");
-				int n = Integer.parseInt(sc.nextLine());
-				listNumber = inputData(n);
-				check = false;
-			} catch (NumberException e) {
-				System.out.println(e.getMessage());
-			} catch (NumberFormatException e) {
-				System.out.println("Nhap sai dinh dang so!");
-			}
-		} while (check);
+		listNumber = inputData();
 
 		displayData(listNumber);
 		if (listNumber.size() > 0) {
