@@ -14,6 +14,12 @@ public class TuDienAction {
 		System.out.println("----------------------------------------");
 	}
 
+	// Nhập một chuỗi
+	public static String nhapChuoi(String msg) {
+		System.out.print(msg);
+		return sc.nextLine();
+	}
+
 	// Nhập mảng từ điển
 	public static void inputData(ArrayList<TuDien> listWord) {
 		int n = 0;
@@ -35,14 +41,11 @@ public class TuDienAction {
 		for (int i = 0; i < n; i++) {
 			System.out.println("Nhap tu so " + (i + 1) + ":");
 			try {
-				System.out.print("Nhap tu tieng Anh: ");
-				String tu = sc.nextLine();
+				String tu = nhapChuoi("Nhap tu tieng Anh: ");
 				if (isExist(tu, listWord))
 					throw new WordException("Tu nay da co trong tu dien, vui long nhap tu khac!");
-				System.out.print("Nhap nghia tieng Viet: ");
-				String nghiaTV = sc.nextLine();
-				System.out.print("Nhap phien am: ");
-				String phienAm = sc.nextLine();
+				String nghiaTV = nhapChuoi("Nhap nghia tieng Viet: ");
+				String phienAm = nhapChuoi("Nhap phien am: ");
 				line();
 				TuDien tuDien = new TuDien(tu, nghiaTV, phienAm);
 				listWord.add(tuDien);

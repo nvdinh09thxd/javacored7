@@ -10,79 +10,68 @@ import exception.NumberException;
 
 public class ThiSinhAction {
 	static Scanner sc = new Scanner(System.in);
+	
+	//Nhập một chuỗi
+	public static String nhapChuoi(String msg) {
+		System.out.print(msg);
+		return sc.nextLine();
+	}
 
+	//Nhập điểm từ 0 đến 10
+	public static float nhapDiem(String msg, String err) {
+		boolean check = true;
+		float n = 0;
+		do {
+			try {
+				System.out.print(msg);
+				n = Float.parseFloat(sc.nextLine());
+				if (n < 0 || n > 10)
+					throw new NumberException(err);
+				check = false;
+			} catch (NumberFormatException e) {
+				System.out.println("Vui lòng nhập đúng định dạng số!");
+			} catch (NumberException e) {
+				System.out.println(e.getMessage());
+			}
+		} while (check);
+		return n;
+	}
+	
+	//Nhập một số dương
+	public static int nhapSoDuong(String msg, String err) {
+		boolean check = true;
+		int n = 0;
+		do {
+			try {
+				System.out.print(msg);
+				n = Integer.parseInt(sc.nextLine());
+				if (n < 0)
+					throw new NumberException(err);
+				check = false;
+			} catch (NumberFormatException e) {
+				System.out.println("Vui lòng nhập đúng định dạng số!");
+			} catch (NumberException e) {
+				System.out.println(e.getMessage());
+			}
+		} while (check);
+		return n;
+	}
+	
 	// Nhập mảng thí sinh
 	public static ArrayList<ThiSinh> inputData() {
 		ArrayList<ThiSinh> listTS = new ArrayList<>();
-		boolean check = true;
-		int n = 0;
-		// Nhập số lượng thí sinh
-		do {
-			try {
-				System.out.print("Nhap so luong thi sinh: ");
-				n = Integer.parseInt(sc.nextLine());
-				if (n < 0)
-					throw new NumberException("Vui long nhap so luong thi sinh lon hon hoac bang 0!");
-				check = false;
-			} catch (NumberException e) {
-				System.out.println(e.getMessage());
-			} catch (NumberFormatException e) {
-				System.out.println("Nhap sai dinh dang so!");
-			}
-		} while (check);
+		int n = nhapSoDuong("Nhập số lượng thí sinh: ", "Vui lòng nhập số lượng thí sinh lớn hơn hoặc bằng 0!");
 
 		// Nhập thông tin cho mỗi thí sinh
 		for (int i = 0; i < n; i++) {
 			System.out.println("Nhap thong tin thi sinh thu " + (i + 1) + ": ");
-			System.out.print("Nhap ten thi sinh: ");
-			String ten = sc.nextLine();
-			float toan = 0, ly = 0, hoa = 0;
-			check = true;
-
+			String ten = nhapChuoi("Nhap ten thi sinh: ");
 			// Nhập điểm Toán
-			do {
-				try {
-					System.out.print("Nhap diem Toan: ");
-					toan = Float.parseFloat(sc.nextLine());
-					if (toan < 0 || toan > 10)
-						throw new NumberException("Vui long nhap diem Toan tu 0 den 10!");
-					check = false;
-				} catch (NumberException e) {
-					System.out.println(e.getMessage());
-				} catch (NumberFormatException e) {
-					System.out.println("Nhap sai dinh dang so!");
-				}
-			} while (check);
-
+			float toan = nhapDiem("Nhap diem Toan: ", "Vui long nhap diem Toan tu 0 den 10!");
 			// Nhập điểm Lý
-			do {
-				try {
-					System.out.print("Nhap diem Ly: ");
-					ly = Float.parseFloat(sc.nextLine());
-					if (ly < 0 || ly > 10)
-						throw new NumberException("Vui long nhap diem Ly tu 0 den 10!");
-					check = true;
-				} catch (NumberException e) {
-					System.out.println(e.getMessage());
-				} catch (NumberFormatException e) {
-					System.out.println("Nhap sai dinh dang so!");
-				}
-			} while (!check);
-
+			float ly = nhapDiem("Nhap diem Ly: ", "Vui long nhap diem Ly tu 0 den 10!");
 			// Nhập điểm Hóa
-			do {
-				try {
-					System.out.print("Nhap diem Hoa: ");
-					hoa = Float.parseFloat(sc.nextLine());
-					if (hoa < 0 || hoa > 10)
-						throw new NumberException("Vui long nhap diem Hoa tu 0 den 10!");
-					check = false;
-				} catch (NumberException e) {
-					System.out.println(e.getMessage());
-				} catch (NumberFormatException e) {
-					System.out.println("Nhap sai dinh dang so!");
-				}
-			} while (check);
+			float hoa = nhapDiem("Nhap diem Hoa: ", "Vui long nhap diem Hoa tu 0 den 10!");
 
 			ThiSinh ts = new ThiSinh(ten, toan, ly, hoa);
 			listTS.add(ts);
@@ -118,8 +107,6 @@ public class ThiSinhAction {
 			public int compare(ThiSinh ts1, ThiSinh ts2) {
 				if (ts1.tongDiem() < ts2.tongDiem()) {
 					return 1;
-				} else if (ts1.tongDiem() == ts2.tongDiem()) {
-					return 0;
 				} else {
 					return -1;
 				}
