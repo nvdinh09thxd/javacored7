@@ -42,6 +42,7 @@ public class TuDienAction {
 			System.out.println("Nhap tu so " + (i + 1) + ":");
 			try {
 				String tu = nhapChuoi("Nhap tu tieng Anh: ");
+				//Kiểm tra xem từ đã tồn tại trong danh sách chưa?
 				if (isExist(tu, listWord))
 					throw new WordException("Tu nay da co trong tu dien, vui long nhap tu khac!");
 				String nghiaTV = nhapChuoi("Nhap nghia tieng Viet: ");
